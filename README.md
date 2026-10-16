@@ -19,3 +19,12 @@ Friends of mine learn trading with fake-money apps, but those apps are in Englis
 - HTML
 - CSS 
 - JavaScript
+
+## What it does today (Week 1)
+- Starts every user with a ₹1,00,000 virtual wallet
+- Shows a market list of Indian stocks with prices and daily change (▲/▼)
+- Buy and sell shares, with checks for not enough cash and not enough shares
+- Holdings list showing what you own and its current value
+- Price strip at the top, like a real trading screen
+- Works on phones and desktops
+
