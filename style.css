@@ -1,0 +1,180 @@
+:root {
+  --bg: #edeef5;        
+  --panel: #ffffff;    
+  --ink: #14152b;       
+  --muted: #666884;     
+  --line: #d6d8e6;      
+  --accent: #ff5a1f;    
+  --profit: #0f8a4f;    
+  --loss: #d7352b;      
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;   /* numbers line up in columns */
+}
+
+h1, h2, .amount { font-family: "Bricolage Grotesque", "DM Sans", sans-serif; }
+
+.topbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+
+.logo {
+  width: 46px;
+  height: 46px;
+  background: var(--ink);
+  color: var(--accent);
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+}
+
+h1 { margin: 0; font-size: 1.6rem; line-height: 1.1; }
+.tagline { margin: 4px 0 0; color: var(--muted); font-size: 0.85rem; max-width: 380px; }
+
+.wallet { text-align: right; }
+.wallet .label { display: block; color: var(--muted); font-size: 0.85rem; }
+.wallet .amount {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  border-bottom: 4px solid var(--accent);
+  display: inline-block;
+}
+
+.ticker {
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 10px 20px;
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.ticker .sym { font-weight: 700; margin-right: 6px; }
+.up { color: var(--profit); }
+.down { color: var(--loss); }
+.ticker .up { color: #4fd18b; }     
+.ticker .down { color: #ff7a70; }
+
+main {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+h2 {
+  margin: 0;
+  padding: 14px 16px;
+  font-size: 1.1rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.5fr 0.9fr 0.8fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.row:last-child { border-bottom: none; }
+
+.row.head {
+  background: #f6f6fb;
+  color: var(--muted);
+  font-size: 0.8rem;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.row.holding { grid-template-columns: 1fr auto auto; }
+
+.symbol { font-weight: 700; }
+.full-name { font-size: 0.8rem; color: var(--muted); }
+.price { font-weight: 500; }
+.change { font-weight: 500; font-size: 0.9rem; }
+
+.actions { display: flex; gap: 6px; align-items: center; }
+
+input[type="number"] {
+  width: 64px;
+  padding: 8px;
+  font: inherit;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+
+button {
+  font: inherit;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1.5px solid var(--ink);
+}
+button.buy  { background: var(--ink); color: #fff; }
+button.sell { background: transparent; color: var(--loss); border-color: var(--loss); }
+button:hover { opacity: 0.8; }
+
+button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.empty { padding: 20px 16px; color: var(--muted); margin: 0; }
+
+#message {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 12px 18px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
+  max-width: 90vw;
+}
+#message:empty { display: none; }
+#message.ok    { background: var(--profit); }
+#message.error { background: var(--loss); }
+
+
+@media (max-width: 760px) {
+  main { grid-template-columns: 1fr; }
+  .wallet { text-align: left; }
+  .row { grid-template-columns: 1fr 1fr; }
+  .row.head { display: none; }
+  .row .actions { grid-column: 1 / -1; }
+  .row.holding { grid-template-columns: 1fr auto auto; }
+}

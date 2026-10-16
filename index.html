@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper Trading</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">₹</div>
+      <div>
+        <h1>Paper Trading</h1>
+        <p class="tagline">Practice trading with virtual money. No real money, no investment advice.</p>
+      </div>
+    </div>
+
+    <div class="wallet">
+      <span class="label">Cash available</span>
+      <span class="amount">₹<span id="wallet">0</span></span>
+    </div>
+  </header>
+
+  <div class="ticker" id="ticker"></div>
+
+  <main>
+    <section class="panel">
+      <h2>Indian market</h2>
+      <div id="stock-list"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Your holdings</h2>
+      <div id="holdings-list"></div>
+    </section>
+  </main>
+
+  <p id="message"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
