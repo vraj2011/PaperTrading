@@ -1,4 +1,4 @@
-:root {
+  :root {
   --bg: #edeef5;        
   --panel: #ffffff;    
   --ink: #14152b;       
@@ -16,7 +16,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: "DM Sans", system-ui, sans-serif;
-  font-variant-numeric: tabular-nums;   /* numbers line up in columns */
+  font-variant-numeric: tabular-nums;  
 }
 
 h1, h2, .amount { font-family: "Bricolage Grotesque", "DM Sans", sans-serif; }
@@ -76,6 +76,30 @@ h1 { margin: 0; font-size: 1.6rem; line-height: 1.1; }
 .ticker .up { color: #4fd18b; }     
 .ticker .down { color: #ff7a70; }
 
+.summary {
+  max-width: 1100px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 12px 16px;
+}
+.stat .label { display: block; color: var(--muted); font-size: 0.8rem;}
+.stat .value {
+font-family: "Bricolage Grotesque", "DM sans", sans-serif;
+font-size: 1.4rem;
+font-weight: 800;
+}
+
+
 main {
   max-width: 1100px;
   margin: 24px auto;
@@ -85,6 +109,8 @@ main {
   gap: 20px;
   align-items: start;
 }
+
+.side { display: grid; gap: 20px; }
 
 .panel {
   background: var(--panel);
@@ -103,7 +129,7 @@ h2 {
   display: grid;
   grid-template-columns: 1.5fr 0.9fr 0.8fr auto;
   align-items: center;
-  gap: 8px;
+  gap: 8px;     
   padding: 12px 16px;
   border-bottom: 1px solid var(--line);
 }
@@ -117,15 +143,17 @@ h2 {
   padding-bottom: 8px;
 }
 
-.row.holding { grid-template-columns: 1fr auto auto; }
-
-.symbol { font-weight: 700; }
-.full-name { font-size: 0.8rem; color: var(--muted); }
-.price { font-weight: 500; }
-.change { font-weight: 500; font-size: 0.9rem; }
-
+.tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 3px;
+  color: #fff;
+}
+.tag.buy  { background: var(--ink); }
+.tag.sell { background: var(--loss); }
 .actions { display: flex; gap: 6px; align-items: center; }
-
+ 
 input[type="number"] {
   width: 64px;
   padding: 8px;
@@ -133,7 +161,7 @@ input[type="number"] {
   border: 1px solid var(--line);
   border-radius: 3px;
 }
-
+ 
 button {
   font: inherit;
   font-weight: 700;
@@ -142,17 +170,35 @@ button {
   cursor: pointer;
   border: 1.5px solid var(--ink);
 }
-button.buy  { background: var(--ink); color: #fff; }
-button.sell { background: transparent; color: var(--loss); border-color: var(--loss); }
-button:hover { opacity: 0.8; }
 
+button.buy   {
+   background: var(--ink);
+   color: #fff; }
+
+button.sell  {
+   background: transparent;
+   color: var(--loss);
+   border-color: var(--loss);
+   }
+
+button.reset {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--line);
+  font-weight: 500; }
+
+
+button:hover { opacity: 0.8; }
+ 
 button:focus-visible, input:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
-
-.empty { padding: 20px 16px; color: var(--muted); margin: 0; }
-
+ 
+.empty { padding: 20px 16px;
+   color: var(--muted);
+    margin: 0; }
+ 
 #message {
   position: fixed;
   left: 50%;
@@ -165,16 +211,24 @@ button:focus-visible, input:focus-visible {
   font-weight: 700;
   max-width: 90vw;
 }
+
 #message:empty { display: none; }
 #message.ok    { background: var(--profit); }
 #message.error { background: var(--loss); }
-
-
+ 
 @media (max-width: 760px) {
   main { grid-template-columns: 1fr; }
+  .summary { grid-template-columns: 1fr 1fr; }
   .wallet { text-align: left; }
   .row { grid-template-columns: 1fr 1fr; }
   .row.head { display: none; }
   .row .actions { grid-column: 1 / -1; }
   .row.holding { grid-template-columns: 1fr auto auto; }
+  .row.trade { grid-template-columns: auto 1fr auto; }
 }
+
+/*## Week 2
+- Added: profit/loss per holding (average buy price), portfolio summary, trade history
+- Added: data saved in the browser (localStorage), reset button
+- Added: prices that move every 4 seconds (fake), so profit/loss actually changes
+ */
